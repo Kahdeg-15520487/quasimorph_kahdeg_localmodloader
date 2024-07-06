@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GAME_PATH>E:\SteamLibrary\steamapps\common\Quasimorph</GAME_PATH>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="0Harmony">
+			<HintPath>$(GAME_PATH)\BepInEx\core\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="Assembly-CSharp" Publicize="true">
+			<HintPath>$(GAME_PATH)\Quasimorph_Data\Managed\Assembly-CSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(GAME_PATH)\Quasimorph_Data\Managed\UnityEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(GAME_PATH)\Quasimorph_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(GAME_PATH)\Quasimorph_Data\Managed\com.rlabrecque.steamworks.net.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.2">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="BepInEx.BaseLib" Version="5.4.21" />
+	</ItemGroup>
+	<PropertyGroup>
+		<PostBuildEvent>xcopy /y "$(ProjectDir)$(OutDir)$(AssemblyName).dll" "$(GAME_PATH)\BepInEx\plugins\"</PostBuildEvent>
+	</PropertyGroup>
+</Project>
